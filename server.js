@@ -2,68 +2,89 @@ const express = require('express');
 const PORT = process.env.PORT || 3001;
 const db = require('./db');
 const {buildUrl} = require('./helpers')
+const routes = require('./routes');
 
 const app = express();
 
-app.get('/api/products', async (req,res) => {
+app.use(routes);
 
-    //buildUrl(req);
-
-    const [results] = await db.query(`
-    SELECT p.pid AS id, caption, cost, p.name, i.pid AS thId, altText, file, type
-    FROM products AS p JOIN images AS i ON i.productID=p.id WHERE i.type='thumbnail'
-    `);
-
-    const products = results.map(product => {
-        const { thId, altText, file, type, ...p } = product;
-
-        return {
-            ...p,
-            thumbnail: {
-                id: thId,
-                altText: altText,
-                file: file,
-                type: type,
-                url: buildUrl(req, type, file)
-            }
-        }
-    });
-
-    res.send({ 
-        products: products
-    });
+// app.get('/api/products', );
         //message: 'This is to get all products',
         //products: products
-    });
+    //});
 //});
 
-app.get('/api/products/:product_id', async (req, res) => {
+// app.get('/api/products/:product_id', async (req, res) => {
 
-    console.log('req.params 1 : ', req.params);
+//     const {product_id} = req.params;
 
-    const {product_id} = req.params;
+//     const [results] = await db.execute(`
+//     SELECT p.pid AS id, caption, cost, description, p.name, i.pid AS thmId, altText, file, type 
+//     FROM products AS p JOIN images AS i 
+//     ON p.id=i.productId WHERE  p.pid=?
+//     `, [product_id]); 
 
-    console.log('req.params 2 : ', req.params);
+//     console.log("results[0]", results[0]);
 
-    const [results] = await db.execute(`
-    SELECT p.pid AS id, caption, cost, description, p.name, i.pid AS thmbnail, altText, file, type,  file, type 
-    FROM products AS p JOIN images AS i 
-    ON p.id=i.productID WHERE  p.pid=?
-    `, [product_id]); //Add  i.type='full_image' ??  type should be a variable here, right? ///p.pid=? Doesn't work
+//     let productImage = results[0];
+//     let {thmId, altText, file, type, ...pImg} = productImage;
+    
+    
+//     productImage = {
+//                 ...pImg,
+//                 image: {
+//                     id: thmId,
+//                     altText: altText,
+//                     file: file,
+//                     type: type,
+//                     url: buildUrl(req, type, file)
+//                 }
+
+//             }
+
+//     console.log("productImage: ", productImage);
+
+//     let productThumbnail = results[1];
+//         //{thmId, altText, file, type} = productThumbnail;
+
+//     console.log("productThumbnail: ", productThumbnail);
+
+//     thumbnail = {
+//                  id: productThumbnail.thmId,
+//                  altText: productThumbnail.altText,
+//                  file: productThumbnail.file,
+//                  type: productThumbnail.type,
+//                  url: buildUrl(req, productThumbnail.type, file)
+//             }
+
+//     console.log("thumbnail: ", productThumbnail.thmId, productThumbnail.type);
+//     console.log("thumbnail: ", thumbnail);
 
     
 
-    
+//     //Another way:   
 
-    //Query database to get all the data you need
-    //Then, format the data as needed
-    //Then, send data to client
+//             ///results.forEach(result => {
 
-    res.send({
-        message: `Get a products details for product - ${product_id}`,
-        results //Sending to postman what i get (in addition to Comandor)
-    });
-});
+//             //const{inId}
+// //let keyName='image'
+
+//             //})
+
+//     //Query database to get all the data you need
+//     //Then, format the data as needed
+//     //Then, send data to client
+ 
+//     res.send({
+//         message: `Get a products details for product - ${product_id}`,
+//         results: {
+//             productImage,
+//             thumbnail
+//         }
+//                      //Sending to postman what i get (can console.log for Comandor)
+//     });
+
+//});
 
 
 app.listen(PORT, () => {
