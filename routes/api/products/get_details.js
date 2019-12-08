@@ -55,12 +55,9 @@ module.exports = async (req,res) => {
     
  
     res.send({
-        message: `Get a products details for product - ${product_id}`,
-        results: {
-            productImage,
-            thumbnail
-        }
-                     //Sending to postman what i get (can console.log for Comandor)
+        ...productImage,
+        thumbnail
+        //Sending to postman what i get (can console.log for Comandor)
     });
 //});
 
