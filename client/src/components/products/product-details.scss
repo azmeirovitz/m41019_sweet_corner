@@ -1,0 +1,60 @@
+
+.h1 {
+    text-align: center;
+}
+
+.caption {
+    text-align: center;
+    color: #754b23;
+    font-family:  "Allura", Cursive;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.productImage {
+    margin-left: 40%;
+}
+
+.h3 {
+    text-align: center;
+}
+
+.description {
+    color: #754b23;
+    //text-align: center;
+}
+
+.cost {
+    font-size: 20px;
+    font-weight: bold;
+    color: #754b23;
+}
+
+.buttonDetails {
+    background-color: aqua;
+    display: inline-block;
+    margin-left: 52%;
+}
+
+.buttonDecrement, .buttonIncrement {
+    background-color: aqua;
+    display: inline-block;
+}
+
+.quantity {
+    background-color: yellow;
+    width: 35px;
+    height: 27px;
+    display: inline-block;
+    text-align: center;
+
+}
+
+.quant {
+    margin-left: 50%;
+}
+
+.quantityControl {
+    margin-left: 53%;
+}
+
