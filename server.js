@@ -6,9 +6,10 @@ const path = require('path');
 
 const app = express();
 
+app.use(express.urlencoded({extended: false})); 
+
 app.use(express.static(path.resolve(__dirname, 'client', 'dist')));
 
-app.use(routes);
 
 app.get('*', (req, res)=>{
 
@@ -16,8 +17,10 @@ app.get('*', (req, res)=>{
 
 });
 
+app.use(routes);
 
 
 app.listen(PORT, () => {
     console.log('The server is running at localhost' + PORT);
 });
+
