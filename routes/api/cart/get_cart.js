@@ -4,17 +4,17 @@ const {buildUrl, getCartTotals} = require('../../../helpers')
 
 module.exports = async (req, res, next) => {
 
-    const {product_id} = req.params; //Will pull acctual info from url
-    const {quantity = 1} = req.body;
-    let {cart, token} = req;
+    // const {product_id} = req.params; //Will pull acctual info from url
+    // const {quantity = 1} = req.body;
+    // let {cart, token} = req;
 
 
-    if (isNaN(quantity) || quantity < 1) {
-        res.status(422).send('Invalid quntity received');
-        return;
-    }
+    // if (isNaN(quantity) || quantity < 1) {
+    //     res.status(422).send('Invalid quntity received');
+    //     return;
+    // }
 
-
+    console.log('THIS SHOULD SHOW UP!!!!!!!!!!!!!!!');
 
 try {
     const {cart} = req;
@@ -76,7 +76,6 @@ const [cartItems] = await db.execute(`SELECT c.pid AS cartId, ci.pid AS itemId, 
 
         res.send(output);
     } catch (error){
-    
     next(error); //express server default error
 
     

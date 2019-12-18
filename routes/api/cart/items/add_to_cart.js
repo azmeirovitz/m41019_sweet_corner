@@ -94,23 +94,16 @@ const {altText, file, type, ...item} = rawItem;
     
     // Create a message to send back to user of what was added
 
-    res.send ({
-        //cartToken: token,
-        cartContent: {
-            cartId: cartId,
-            cartToken: token,
-            item: item,
-            message: message,
-            total: total
-            //itemId: itemId,
-            //productId: productId,
-            //itemCost: itemCost,
-            //quantity: quantity
-        },
-        
-
-        //total: total
-
+    res.send ( {
+        cartId: cartId,
+        cartToken: token,
+        item: item,
+        message: message,
+        total: total
+        //itemId: itemId,
+        //productId: productId,
+        //itemCost: itemCost,
+        //quantity: quantity
     });
 }
 
